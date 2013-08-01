@@ -1,0 +1,11 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =9
+let g:netrw_dirhist_1='/home2/pmcdonald/passwords'
+let g:netrw_dirhist_2='/opt/mp/bin/etl_insight'
+let g:netrw_dirhist_3='/opt/dotomi/cj/logs/postgres'
+let g:netrw_dirhist_4='/home2/pmcdonald/dbx/bin'
+let g:netrw_dirhist_5='/home2/pmcdonald/dbx'
+let g:netrw_dirhist_6='/opt/mp/lib/pgloader_test'
+let g:netrw_dirhist_7='/home2/pmcdonald/.vim'
+let g:netrw_dirhist_8='/home2/pmcdonald/.pki'
+let g:netrw_dirhist_9='/home2/pmcdonald/passwords'
