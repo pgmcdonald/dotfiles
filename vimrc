@@ -55,6 +55,12 @@ set foldlevel=99
 set modeline
 set ls=2
 
+set nobackup                         " don't make a backup before overwriting a file.
+set nowritebackup                    " ^^^
+set noswapfile                       " don't need no stinky swapfiles
+set directory=~/tmp,/tmp             " keep swap files in one location
+
+
 "colorscheme
 "colorscheme ir_black
 "colorscheme Monokai
