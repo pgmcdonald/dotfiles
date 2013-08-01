@@ -2,10 +2,8 @@
 if [ -f ~/.bashrc ]; then
 	. ~/.bashrc
 fi
-#export CLICOLOR=1
-#export LSCOLORS=ExFxCxDxBxegedabagacad
-#export LSCOLORS=DxGxcxdxCxegedabagacad
 
+#add various directories to PATH
 
 if [[ "`uname`" == *"Darwin"* ]]
 then
@@ -44,13 +42,20 @@ then
 fi
 
 
+
+# set defaul bash editor (for crontab et al.)
 export SVN_EDITOR=vim
+export EDITOR=vim
+export VISUAL=vim
+
 
 # User specific environment and startup programs
 JAVA_HOME=/opt/java/jdk
 
+#add various directories to PATH
 PATH=/opt/python/bin:$PATH:$JAVA_HOME/bin:/opt/bin:$HOME/bin:.
-#. /opt/mp/bin/etl.env
+
+#MarketPlace
 . /opt/dbx/config/etl.env
 
 export PS1="[\u@\h \W]\$ "
@@ -62,6 +67,8 @@ unset USERNAME
 
 set -o vi
 
+#aliass
+alias ll='ls -ltr'
 alias name='~/func/name'
 alias mp_screen='~/func/mp_screen'
 alias stg='cd /opt/dotomi/mp/stage_tmp'
@@ -83,7 +90,6 @@ alias mplogs='cd /opt/dotomi/mp/logs'
 alias dbxlogs='cd /opt/dotomi/dbx/logs'
 alias cjlogs='cd /opt/dotomi/cj/logs'
 alias guard='cd /opt/dotomi/guardian_development_sites/pmcdonald/guardian_site'
-
 alias vi='vim'
 
 
@@ -99,6 +105,19 @@ find . -type f | xargs ls -s | sort -rn | awk '{size=$1/1024; printf("%dMb %s\n"
 
 unset LS_COLORS
 unset PROMPT_COMMAND
+
+#enable colors
+eval "`dircolors -b`"
+alias ls='ls --color=auto'
+
+# whenever displaying the prompt, write the previous line to disk
+# so new shell gets the history lines from all previous shells
+export PROMPT_COMMAND='history -a'
+
+# increase history limit (100KB or 5K entries)
+export HISTFILESIZE=100000
+export HISTSIZE=5000
+
 
 # Login greeting ------------------
 #f running interactively, then:
