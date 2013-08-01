@@ -66,6 +66,8 @@ export JAVA_HOME PATH
 unset USERNAME
 
 set -o vi
+
+
 set umask 002
 #aliass
 alias ll='ls -ltr'
