@@ -109,6 +109,10 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" toggle displaying tabs with ,s
+set listchars=tab:.»
+nmap <silent> <leader>s :set nolist!<CR>
+
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
