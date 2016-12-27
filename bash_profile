@@ -18,6 +18,7 @@
 #   -------------------------------
 #   1.  ENVIRONMENT CONFIGURATION
 #   -------------------------------
+    set -o vi
 
 #   Change Prompt
 #   ------------------------------------------------------------
@@ -81,12 +82,11 @@ fi
 
 # whenever displaying the prompt, write the previous line to disk
 # so new shell gets the history lines from all previous shells
-export PROMPT_COMMAND='history -a'
+    export PROMPT_COMMAND='history -a'
 
 # increase history limit (100KB or 5K entries)
-export HISTFILESIZE=100000
-export HISTSIZE=5000
-
+    export HISTFILESIZE=100000
+    export HISTSIZE=5000
 
 
 #   Add color to terminal
