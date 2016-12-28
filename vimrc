@@ -1,4 +1,4 @@
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sections:
 "    -> General
 "    -> VIM user interface
@@ -20,6 +20,7 @@
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "sets how many lines of history VIM has to rememeber
+set history=1000
 set history=1000
 
 " Enbale filetype plugins
@@ -65,8 +66,16 @@ set hid
 " Ignore case when searching
 set ignorecase
 
+
+"search optoins
+"enable search highligting
+set hlsearch
 " Makes search act like search in modern browsers
-"set incsearch
+set incsearch
+
+" turn off search highlight
+nnoremap <leader><space> :nohlsearch<CR>
+
 
 " Show matching brackets when text indicator is over them
 set showmatch
@@ -87,7 +96,7 @@ set tm=500
 " Enable syntax highlighting
 syntax enable
 syntax on
-colorscheme Monokai-Refined
+colorscheme badwolf
 "set background=dark
 
 " Set extra options when running in GUI mode
@@ -96,11 +105,11 @@ if has("gui_running")
     set guioptions+=e
     set t_Co=256
     set guitablabel=%M\ %t
-    " support 256 colors in Lion terminal 
+    " support 256 colors in Lion terminal
     set t_Co=256
 endif
 
-" support 256 colors in terminal 
+" support 256 colors in terminal
 set t_Co=256
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -146,8 +155,8 @@ set statusline+=\ [%p%%]    " Percentage through file
 
 "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
-"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l 
-set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l 
+"set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
+set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
 
 set statusline+=%=          " Switch to right align
 set statusline+=[Ascii:%03.3b     " ASCII value for character under cursor
@@ -217,14 +226,18 @@ function! <SID>BufcloseCloseIt()
    endif
 endfunction
 
+
+
+
+
 "format
 "set smartindent
 "set textwidth=80
 "set title
-"set tabstop=4
+set tabstop=4
 "set shiftwidth=4
-"set softtabstop=4
-"set expandtab
+set softtabstop=4
+set expandtab "Tabs are spaces
 "set laststatus=2
 "set showtabline=2
 
@@ -241,15 +254,10 @@ endfunction
 "set statusline+=,%l/%L]     " Current line number, total lines
 "set statusline+=\ [%p%%]    " Percentage through file
 
-" syntax
-"syntax on
-"syntax enable
-
 "search optoins
 "enable search highligting
 "set hlsearch
-
-" support 256 colors in Lion terminal 
+" support 256 colors in Lion terminal
 "set t_Co=256
 
 " Folding
@@ -265,9 +273,3 @@ endfunction
 "set nowritebackup                    " ^^^
 "set noswapfile                       " don't need no stinky swapfiles
 "set directory=~/tmp,/tmp             " keep swap files in one location
-
-
-"colorscheme
-"colorscheme ir_black
-"colorscheme Monokai
-"colorscheme Monokai-Refined
