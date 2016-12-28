@@ -40,8 +40,8 @@
     export BLOCKSIZE=1k
 
 
-if [[ "`uname`" == *"Darwin"* ]]
-then
+    if [[ "`uname`" == *"Darwin"* ]]
+    then
     # OS X uses BSD ls which is relatively restricted compared to
     # GNU ls as far as coloring options go. Stick to the basics here.
     # LSCOLORS is in pairs (fgcolor, bgcolor)
@@ -70,14 +70,14 @@ then
     # 10. directory writable by others, with sticky bit
     # 11. directory writable by others, without sticky bit
 
-    export LSCOLORS="ExGxbxdxCxegedabagacad"
+        export LSCOLORS="ExGxbxdxCxegedabagacad"
 
-    # Tell grep to highlight matches
-    export GREP_OPTIONS='--color=auto'
+        # Tell grep to highlight matches
+        export GREP_OPTIONS='--color=auto'
 
-    # Must use either CLICOLOR=1 or ls -G
-    export CLICOLOR=1
-fi
+        # Must use either CLICOLOR=1 or ls -G
+        export CLICOLOR=1
+    fi
 
 
 # whenever displaying the prompt, write the previous line to disk
@@ -87,20 +87,6 @@ fi
 # increase history limit (100KB or 5K entries)
     export HISTFILESIZE=100000
     export HISTSIZE=5000
-
-
-#   Add color to terminal
-#   (this is all commented out as I use Mac Terminal Profiles)
-#   from http://osxdaily.com/2012/02/21/add-color-to-the-terminal-in-mac-os-x/
-#   ------------------------------------------------------------
-#   export CLICOLOR=1
-#   export LSCOLORS=ExFxBxDxCxegedabagacad
-#    export CLICOLOR=1
-    #export LSCOLORS=Exfxcxdxbxegedabagacad
-#    export LSCOLORS="ExGxbxdxCxegedabagacad"
-
-
-
 
 
 #   -----------------------------
@@ -130,24 +116,10 @@ alias show_options='shopt'                  # Show_options: display bash options
 alias fix_stty='stty sane'                  # fix_stty:     Restore terminal settings when screwed up
 alias cic='set completion-ignore-case On'   # cic:          Make tab-completion case-insensitive
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Makes new Dir and jumps inside
-trash () { command mv "$@" ~/.Trash ; }     # trash:        Moves a file to the MacOS trash
-ql () { qlmanage -p "$*" >& /dev/null; }    # ql:           Opens any file in MacOS Quicklook Preview
-alias DT='tee ~/Desktop/terminalOut.txt'    # DT:           Pipe content to file on MacOS Desktop
 
 #   lr:  Full Recursive Directory Listing
 #   ------------------------------------------
 alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'' | less'
-
-#   mans:   Search manpage given in agument '1' for term given in argument '2' (case insensitive)
-#           displays paginated result with colored search terms and two lines surrounding each hit.             Example: mans mplayer codec
-#   --------------------------------------------------------------------
-    mans () {
-        man $1 | grep -iC2 --color=always $2 | less
-    }
-
-#   showa: to remind yourself of an alias (given some part of it)
-#   ------------------------------------------------------------
-    showa () { /usr/bin/grep --color=always -i -a1 $@ ~/Library/init/bash/aliases.bash | grep -v '^\s*$' | less -FSRXc ; }
 
 
 #   -------------------------------
@@ -160,23 +132,6 @@ alias make1mb='mkfile 1m ./1MB.dat'         # make1mb:      Creates a file of 1m
 alias make5mb='mkfile 5m ./5MB.dat'         # make5mb:      Creates a file of 5mb size (all zeros)
 alias make10mb='mkfile 10m ./10MB.dat'      # make10mb:     Creates a file of 10mb size (all zeros)
 
-#   cdf:  'Cd's to frontmost window of MacOS Finder
-#   ------------------------------------------------------
-    cdf () {
-        currFolderPath=$( /usr/bin/osascript <<EOT
-            tell application "Finder"
-                try
-            set currFolder to (folder of the front window as alias)
-                on error
-            set currFolder to (path to desktop folder as alias)
-                end try
-                POSIX path of currFolder
-            end tell
-EOT
-        )
-        echo "cd to \"$currFolderPath\""
-        cd "$currFolderPath"
-    }
 
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
@@ -206,10 +161,10 @@ EOT
 #   4.  SEARCHING
 #   ---------------------------
 
-alias qfind="find . -name "                 # qfind:    Quickly search for file
-ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
-ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
-ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
+    alias qfind="find . -name "                 # qfind:    Quickly search for file
+    ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file under the current directory
+    ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file whose name starts with a given string
+    ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file whose name ends with a given string
 
 #   spotlight: Search for a file using MacOS Spotlight's metadata
 #   -----------------------------------------------------------
@@ -271,16 +226,18 @@ alias showBlocked='sudo ipfw list'                  # showBlocked:  All ipfw rul
 #   ii:  display useful host related informaton
 #   -------------------------------------------------------------------
     ii() {
-        echo -e "\nYou are logged on ${RED}$HOST"
+        echo -e "\nYou are logged on \033[1;31m$HOST\033[0m"
         echo -e "\nAdditionnal information:$NC " ; uname -a
-        echo -e "\n${RED}Users logged on:$NC " ; w -h
-        echo -e "\n${RED}Current date :$NC " ; date
-        echo -e "\n${RED}Machine stats :$NC " ; uptime
-        echo -e "\n${RED}Current network location :$NC " ; scselect
-        echo -e "\n${RED}Public facing IP Address :$NC " ;myip
+        echo -e "\n\033[1;31mUsers logged on:$NC \033[0m" ; w -h
+        echo -e "\n\033[1;31mCurrent date :$NC \033[0m" ; date
+        echo -e "\n\033[1;31mMachine stats :$NC \033[0m" ; uptime
+        echo -e "\n\033[1;31mCurrent network location :$NC \033[0m" ; scselect
+        echo -e "\n\033[1;31mPublic facing IP Address :$NC \033[0m" ;myip
         echo
     }
 
+
+#"\033[1;31m This is red text \033[0m"
 
 #   ---------------------------------------
 #   7.  SYSTEMS OPERATIONS & INFORMATION
